@@ -7,7 +7,6 @@ const app = express();
 connect();
 
 app.use('/graphql', graphqlHTTP({
-    graphiql : true,
     schema: schema ,
     context: {
         messageId: 'test'

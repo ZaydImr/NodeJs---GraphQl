@@ -12,13 +12,27 @@ export const resolvers = {
          },
          tasks(){
              return tasks;
-         } 
+         } ,
+         async users(){
+            return await User.find()
+         }
     },
     Mutation: {
         createTask(root , { input }){
             input._id = tasks.length;
             tasks.push(input);
             return input;
+         },
+         async createUser( root, { input } ){
+             const newUser = new User(input);
+             await newUser.save();
+             return newUser;
+         },
+         async deleteUser(root, { _id } ){
+            return await User.findByIdAndDelete(_id);
+         },
+         async updateUser(root, { _id, input } ){
+            return await User.findByIdAndUpdate( _id, input, {new: true} );
          }
     }
 }
