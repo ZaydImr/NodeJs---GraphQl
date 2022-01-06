@@ -6,7 +6,8 @@ import { connect } from './database.js'
 const app = express();
 connect();
 
-app.use('/graphql', graphqlHTTP({
+app.use('/', graphqlHTTP({
+    graphiql: true,
     schema: schema ,
     context: {
         messageId: 'test'
